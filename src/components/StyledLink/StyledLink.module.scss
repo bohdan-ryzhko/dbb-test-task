@@ -1,7 +1,9 @@
 @import "../../sass/helper";
 
-.title {
-  font-size: 24px;
-  font-weight: 400;
+.link {
   color: $--main-color;
+}
+
+.activeLink {
+  color: tomato;
 }
