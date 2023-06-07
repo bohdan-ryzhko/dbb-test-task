@@ -5,7 +5,7 @@ import { Container } from "../Container/Container";
 
 export const Layout: FC = () => (
 	<>
-		<NavBar />
+		{/* <NavBar /> */}
 		<main>
 			<Container>
 				<Outlet />
