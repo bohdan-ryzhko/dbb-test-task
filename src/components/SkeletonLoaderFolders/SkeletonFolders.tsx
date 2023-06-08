@@ -1,8 +1,8 @@
-import sass from "./SkeletonFolders.module.scss";
+import sass from "./SkeletonLoaderFolders.module.scss";
 import { FC } from "react";
 import SkeletonLoader from "tiny-skeleton-loader-react";
 
-export const SkeletonFolders: FC = () => (
+export const SkeletonLoaderFolders: FC = () => (
 	<ul className={sass.skeletonList}>
 		<li className={sass.loaderItem}>
 			<SkeletonLoader block width={75} height={75} />
