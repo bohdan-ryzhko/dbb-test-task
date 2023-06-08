@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import { setAuth } from "../../redux/authSlice";
 import { useAuth } from "../../hooks/useAuth";
 import { Title } from "../../components/Title/Title";
+import { WelcomeMessage } from "../../components/WelcomeMessage/WelcomeMessage";
 
 export const Home: FC = () => {
 	const { search } = useLocation();
@@ -22,11 +23,7 @@ export const Home: FC = () => {
 	return (
 		<>
 			<Title title="Home" />
-			{
-				isAuth
-					? <p>Welcome, {name}</p>
-					: <p>To see your Dropbox folders - click Authorize with Dropbox</p>
-			}
+			<WelcomeMessage isAuth={isAuth} name={name} />
 		</>
 	)
 }
