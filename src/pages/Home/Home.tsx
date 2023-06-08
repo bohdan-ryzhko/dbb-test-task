@@ -5,7 +5,6 @@ import { AppDispatch } from "../../types/AppDispatch";
 import { useLocation } from "react-router-dom";
 import { setAuth } from "../../redux/authSlice";
 import { useAuth } from "../../hooks/useAuth";
-import { getUserInfo } from "../../redux/operations";
 
 export const Home: FC = () => {
 	const { search } = useLocation();
@@ -13,14 +12,10 @@ export const Home: FC = () => {
 	const dispatch: AppDispatch = useDispatch();
 	
 	useEffect(() => {
-		dispatch(setAuth(search));
-
-		if (!isAuth) return;
-
-		dispatch(getUserInfo());
-		// axios.get("http://localhost:3001/api/folders")
-		// 	.then(data => console.log(data))
-		// 	.catch(err => console.log(err));
+		if (!isAuth) {
+			dispatch(setAuth(search));
+			return;
+		};
 
 	}, [dispatch, search, isAuth]);
 

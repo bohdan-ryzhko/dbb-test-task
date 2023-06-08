@@ -1,4 +1,0 @@
-[
-  { "id": "id-01", "text": "Home", "to": "/" },
-  { "id": "id-02", "text": "Your files", "to": "/files" }
-]

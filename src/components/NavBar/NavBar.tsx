@@ -1,21 +1,25 @@
 import sass from "./NavBar.module.scss";
 import { FC } from "react";
+
 import { StyledLink } from "../StyledLink/StyledLink";
+import { useAuth } from "../../hooks/useAuth";
 
-import links from "../../collections/nav-links.json";
+export const NavBar: FC = () => {
+	const { isAuth } = useAuth();
 
-export const NavBar:FC = () => {
 	return (
 		<div className={sass.navWrapper}>
 			<div className={sass.navInner}>
 				<nav className={sass.navigation}>
 					<ul className={sass.navigationList}>
+						<li>
+							<StyledLink to="/" text="Home" />
+						</li>
 						{
-							links.map(link =>
-								<li key={link.id}>
-									<StyledLink to={link.to} text={link.text} />
-								</li>
-							)
+							isAuth &&
+							<li>
+								<StyledLink to="/files" text="Your files" />
+							</li>
 						}
 					</ul>
 				</nav>
