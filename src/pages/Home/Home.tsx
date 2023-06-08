@@ -5,6 +5,7 @@ import { AppDispatch } from "../../types/AppDispatch";
 import { useLocation } from "react-router-dom";
 import { setAuth } from "../../redux/authSlice";
 import { useAuth } from "../../hooks/useAuth";
+import { Title } from "../../components/Title/Title";
 
 export const Home: FC = () => {
 	const { search } = useLocation();
@@ -20,7 +21,7 @@ export const Home: FC = () => {
 	}, [dispatch, search, isAuth]);
 	return (
 		<>
-			<h1>Home</h1>
+			<Title title="Home" />
 			{
 				isAuth
 					? <p>Welcome, {name}</p>
