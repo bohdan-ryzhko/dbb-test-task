@@ -1,0 +1,15 @@
+.authBtn {
+  background-color: tomato;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 7px;
+  -webkit-box-shadow: 0px 10px 25px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 10px 25px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 10px 18px -10px rgba(0, 0, 0, 0.75);
+  transition: background-color 300ms ease;
+
+  &:hover {
+    background-color: rgb(189, 73, 52);
+  }
+}

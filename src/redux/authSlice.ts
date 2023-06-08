@@ -13,6 +13,9 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setAuth: handleSetAuth,
+		logout: (state) => {
+			state.isAuth = false;
+		}
 	},
 	extraReducers: builder => {
 		builder
@@ -22,5 +25,5 @@ const authSlice = createSlice({
 	}
 });
 
-export const { setAuth } = authSlice.actions;
+export const { setAuth, logout } = authSlice.actions;
 export const authReducer = authSlice.reducer;

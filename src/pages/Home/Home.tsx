@@ -19,14 +19,9 @@ export const Home: FC = () => {
 
 	}, [dispatch, search, isAuth]);
 
-	const handleAuth = () => {
-		window.location.href = "http://localhost:3001/api/redirect";
-	}
-
 	return (
 		<>
 			<h1>Home</h1>
-			<button onClick={handleAuth}>Auth</button>
 		</>
 	)
 }

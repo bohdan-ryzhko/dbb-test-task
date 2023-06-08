@@ -1,5 +1,14 @@
 @import "../../sass/helper";
 
+.link,
+.activeLink {
+  font-size: 18px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .link {
   color: $--main-color;
 }
