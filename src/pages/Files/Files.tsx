@@ -5,9 +5,10 @@ import { useAuth } from "../../hooks/useAuth";
 import { getUserInfo } from "../../redux/operations";
 import { Folders } from "../../components/Folders/Folders";
 import { Title } from "../../components/Title/Title";
+import { SkeletonFolders } from "../../components/SkeletonFolders/SkeletonFolders";
 
 export const Files: FC = () => {
-	const { isAuth, folders } = useAuth();
+	const { isAuth, folders, isLoad } = useAuth();
 	const dispatch: AppDispatch = useDispatch();
 
 	useEffect(() => {
@@ -18,9 +19,11 @@ export const Files: FC = () => {
 	return (
 		<>
 			<Title title="Files" />
+
 			{
-				folders.length > 0 &&
-				<Folders folders={folders} />
+				isLoad
+					? <SkeletonFolders />
+					: folders.length > 0 && <Folders folders={folders} />
 			}
 		</>
 	)
