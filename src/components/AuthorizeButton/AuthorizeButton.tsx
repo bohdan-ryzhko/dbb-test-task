@@ -3,6 +3,7 @@ import { AppDispatch } from "../../types/AppDispatch";
 import sass from "./AuthorizeButton.module.scss";
 import { FC } from "react";
 import { logout } from "../../redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 interface AuthorizeButtonProps {
 	isAuth: boolean,
@@ -11,12 +12,13 @@ interface AuthorizeButtonProps {
 export const AuthorizeButton: FC<AuthorizeButtonProps> = ({ isAuth }) => {
 
 	const dispatch: AppDispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const handleAuth = (isAuth: boolean) => {
 		if (!isAuth) {
 			window.location.href = "http://localhost:3001/api/redirect";
 		}
-		
+		navigate({ search: "" });
 		dispatch(logout());
 	}
 

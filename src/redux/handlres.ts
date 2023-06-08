@@ -2,6 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
 import { IInitialState } from "../interfaces/IInitialState";
 import { UserInfo } from "../interfaces/UserInfo";
 import { convertQueryStringToObject } from "../utils/convertQueryStringToObject";
+import { checkValue } from "../utils/checkValue";
 
 export const handleUserInfoPending: CaseReducer<IInitialState> = (state) => {
 	state.isLoad = true;
@@ -19,10 +20,15 @@ export const handleUserInfoRejected: CaseReducer<IInitialState, PayloadAction<un
 }
 
 export const handleSetAuth: CaseReducer<IInitialState, PayloadAction<string>> = (state, action) => {
-	const { access } = convertQueryStringToObject(action.payload);
-		if (!access) {
-			state.isAuth = false;
-			return;
-		}
-		state.isAuth = access;
+	const { access, email, name } = convertQueryStringToObject(action.payload);
+	if (!access) {
+		state.email = "";
+		state.name = "";
+		state.isAuth = false;
+		return;
+	}
+	console.log(name)
+	state.name = checkValue(name) as string;
+	state.email = checkValue(email) as string;
+	state.isAuth = checkValue(access) as boolean;
 }

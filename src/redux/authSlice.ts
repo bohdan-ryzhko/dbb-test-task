@@ -14,6 +14,7 @@ const authSlice = createSlice({
 	reducers: {
 		setAuth: handleSetAuth,
 		logout: (state) => {
+			state.items = [];
 			state.isAuth = false;
 		}
 	},
