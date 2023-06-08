@@ -15,7 +15,7 @@ export const Folders: FC<FoldersProps> = ({ folders }) => {
 						key={folder.id}
 						className={sass.folderItem}
 					>
-						<img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/folder-invoices--v1.png" alt="folder-invoices--v1"/>
+						<img width="75" height="75" src="https://img.icons8.com/3d-fluency/94/folder-invoices--v1.png" alt="folder-invoices--v1"/>
 						<p className={sass.folderName}>{folder.name}</p>
 					</li>
 				)

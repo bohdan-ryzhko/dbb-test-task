@@ -8,7 +8,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 export const Home: FC = () => {
 	const { search } = useLocation();
-	const { isAuth } = useAuth();
+	const { isAuth, name } = useAuth();
 	const dispatch: AppDispatch = useDispatch();
 	
 	useEffect(() => {
@@ -18,10 +18,14 @@ export const Home: FC = () => {
 		};
 
 	}, [dispatch, search, isAuth]);
-
 	return (
 		<>
 			<h1>Home</h1>
+			{
+				isAuth
+					? <p>Welcome, {name}</p>
+					: <p>To see your Dropbox folders - click Authorize with Dropbox</p>
+			}
 		</>
 	)
 }
