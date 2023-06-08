@@ -15,3 +15,15 @@ export const getUserInfo = createAsyncThunk<UserInfo>(
 		}
 	}
 );
+
+export const logout = createAsyncThunk<any, string>(
+	"folders/logout",
+	async (email, thunkAPI) => {
+		try {
+			const response = await axios.delete(`http://localhost:3001/api/folders/${email}`);
+			return response.data;
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error);
+		}
+	}
+);

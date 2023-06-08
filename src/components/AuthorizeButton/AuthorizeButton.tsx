@@ -2,9 +2,10 @@ import sass from "./AuthorizeButton.module.scss";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../types/AppDispatch";
 import { FC, useState } from "react";
-import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import { LoaderButton } from "../LoaderButton/LoaderButton";
+import { logout } from "../../redux/operations";
+import { useAuth } from "../../hooks/useAuth";
 
 interface AuthorizeButtonProps {
 	isAuth: boolean,
@@ -15,6 +16,7 @@ export const AuthorizeButton: FC<AuthorizeButtonProps> = ({ isAuth }) => {
 	const dispatch: AppDispatch = useDispatch();
 	const navigate = useNavigate();
 	const setAuthText = isAuth ? "Log out" : "Authorizing with Dropbox";
+	const { email } = useAuth();
 
 	const handleAuth = (isAuth: boolean) => () => {
 		if (!isAuth) {
@@ -23,7 +25,7 @@ export const AuthorizeButton: FC<AuthorizeButtonProps> = ({ isAuth }) => {
 			return;
 		}
 		navigate({ search: "" });
-		dispatch(logout());
+		dispatch(logout(email));
 	}
 
 	return (
