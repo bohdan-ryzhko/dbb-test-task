@@ -4,6 +4,7 @@ import {
 	selectFolders,
 	selectIsAuth,
 	selectIsLoad,
+	selectIsLoadAuthButton,
 	selectName
 } from "../redux/selectors";
 
@@ -12,5 +13,6 @@ export const useAuth = () => ({
 	folders: useSelector(selectFolders),
 	name: useSelector(selectName),
 	isLoad: useSelector(selectIsLoad),
-	email: useSelector(selectEmail)
+	email: useSelector(selectEmail),
+	isLoadAuthButton: useSelector(selectIsLoadAuthButton)
 });

@@ -34,6 +34,25 @@ export const handleSetAuth: CaseReducer<IInitialState, PayloadAction<string>> = 
 	state.isAuth = checkValue(access) as boolean;
 }
 
-export const handleRedirectWindowLocation = () => {
+export const handleRedirectWindowLocation: CaseReducer<IInitialState> = (state) => {
+	state.isLoadAuthButton = true;
 	window.location.href = "http://localhost:3001/api/redirect";
+}
+
+export const handleLogoutPending: CaseReducer<IInitialState> = (state) => {
+	state.isLoad = true;
+	state.isLoadAuthButton = true;
+}
+
+export const handleLogoutFulfilled: CaseReducer<IInitialState, PayloadAction<unknown>> = (state, action) => {
+	state.isLoad = false;
+	state.isLoadAuthButton = false;
+	state.items = [];
+	state.isAuth = false;
+}
+
+export const handleLogoutRejected: CaseReducer<IInitialState, PayloadAction<unknown>> = (state, action) => {
+	state.isLoad = false;
+	state.isLoadAuthButton = false;
+	state.error = action.payload;
 }

@@ -6,6 +6,9 @@ import {
 	handleUserInfoPending,
 	handleUserInfoRejected,
 	handleRedirectWindowLocation,
+	handleLogoutPending,
+	handleLogoutFulfilled,
+	handleLogoutRejected,
 } from "./handlres";
 import { getUserInfo, logout } from "./operations";
 
@@ -21,18 +24,9 @@ const authSlice = createSlice({
 			.addCase(getUserInfo.pending, handleUserInfoPending)
 			.addCase(getUserInfo.fulfilled, handleUserInfoFulfilled)
 			.addCase(getUserInfo.rejected, handleUserInfoRejected)
-			.addCase(logout.pending, state => {
-				state.isLoad = true;
-			})
-			.addCase(logout.fulfilled, (state, action) => {
-				state.isLoad = false;
-				state.items = [];
-				state.isAuth = false;
-			})
-			.addCase(logout.rejected, (state, action) => {
-				state.isLoad = false;
-				state.error = action.payload;
-			})
+			.addCase(logout.pending, handleLogoutPending)
+			.addCase(logout.fulfilled, handleLogoutFulfilled)
+			.addCase(logout.rejected, handleLogoutRejected)
 	}
 });
 
