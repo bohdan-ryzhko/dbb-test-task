@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { LoaderButton } from "../LoaderButton/LoaderButton";
 import { logout } from "../../redux/operations";
 import { useAuth } from "../../hooks/useAuth";
+import { redirectWindowLocation } from "../../redux/authSlice";
 
 interface AuthorizeButtonProps {
 	isAuth: boolean,
@@ -21,7 +22,7 @@ export const AuthorizeButton: FC<AuthorizeButtonProps> = ({ isAuth }) => {
 	const handleAuth = (isAuth: boolean) => () => {
 		if (!isAuth) {
 			setIsLoadButton(true);
-			window.location.href = "http://localhost:3001/api/redirect";
+			dispatch(redirectWindowLocation());
 			return;
 		}
 		navigate({ search: "" });

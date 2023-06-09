@@ -5,6 +5,7 @@ import {
 	handleUserInfoFulfilled,
 	handleUserInfoPending,
 	handleUserInfoRejected,
+	handleRedirectWindowLocation,
 } from "./handlres";
 import { getUserInfo, logout } from "./operations";
 
@@ -13,6 +14,7 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setAuth: handleSetAuth,
+		redirectWindowLocation: handleRedirectWindowLocation,
 	},
 	extraReducers: builder => {
 		builder
@@ -24,17 +26,15 @@ const authSlice = createSlice({
 			})
 			.addCase(logout.fulfilled, (state, action) => {
 				state.isLoad = false;
-				console.log(action.payload);
 				state.items = [];
 				state.isAuth = false;
 			})
 			.addCase(logout.rejected, (state, action) => {
 				state.isLoad = false;
-				console.log(action.payload);
 				state.error = action.payload;
 			})
 	}
 });
 
-export const { setAuth } = authSlice.actions;
+export const { setAuth, redirectWindowLocation } = authSlice.actions;
 export const authReducer = authSlice.reducer;

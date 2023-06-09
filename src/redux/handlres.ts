@@ -33,3 +33,7 @@ export const handleSetAuth: CaseReducer<IInitialState, PayloadAction<string>> = 
 	state.email = checkValue(email) as string;
 	state.isAuth = checkValue(access) as boolean;
 }
+
+export const handleRedirectWindowLocation = () => {
+	window.location.href = "http://localhost:3001/api/redirect";
+}
