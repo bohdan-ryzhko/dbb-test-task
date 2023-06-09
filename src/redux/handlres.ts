@@ -47,6 +47,8 @@ export const handleLogoutPending: CaseReducer<IInitialState> = (state) => {
 export const handleLogoutFulfilled: CaseReducer<IInitialState, PayloadAction<unknown>> = (state, action) => {
 	state.isLoad = false;
 	state.isLoadAuthButton = false;
+	state.name = "";
+	state.email = "";
 	state.items = [];
 	state.isAuth = false;
 }
