@@ -21,8 +21,10 @@ export const Files: FC = () => {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
 	useEffect(() => {
+		const controller = new AbortController();
+
 		if (isAuth) {
-			dispatch(getUserInfo());
+			dispatch(getUserInfo(controller));
 		}
 
 		if (create) {
@@ -31,7 +33,11 @@ export const Files: FC = () => {
 			return;
 		}
 
-	}, [dispatch, isAuth, create]);
+		return () => {
+			controller.abort();
+		}
+
+	}, [dispatch, isAuth, create, navigate, newFolder]);
 
 	useEffect(() => {
 		if (isModalOpen) {
