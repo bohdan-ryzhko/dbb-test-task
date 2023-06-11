@@ -3,11 +3,10 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../types/AppDispatch";
 import { useAuth } from "../../hooks/useAuth";
 import { getUserInfo } from "../../redux/operations";
-import { Folders } from "../../components/Folders/Folders";
 import { Title } from "../../components/Title/Title";
-import { SkeletonLoaderFolders } from "../../components/SkeletonLoaderFolders/SkeletonFolders";
 import { ButtonCreateFolder } from "../../components/ButtonCreateFolder/ButtonCreateFolder";
 import { CreateFolderModal } from "../../components/CreateFolderModal/CreateFolderModal";
+import { RenderList } from "../../components/RenderList/RenderList";
 
 export const Files: FC = () => {
 	const dispatch: AppDispatch = useDispatch();
@@ -16,11 +15,13 @@ export const Files: FC = () => {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
 	useEffect(() => {
-		if (!isAuth) return;
+		if (isAuth) {
+			dispatch(getUserInfo());
+		};
+	}, [dispatch, isAuth]);
 
-		dispatch(getUserInfo());
-
-		if(isModalOpen) {
+	useEffect(() => {
+		if (isModalOpen) {
 			document.body.classList.add("no-scroll");
 		} else {
 			document.body.classList.remove("no-scroll");
@@ -30,17 +31,13 @@ export const Files: FC = () => {
 			document.body.classList.remove("no-scroll");
 		}
 
-	}, [dispatch, isAuth, isModalOpen]);
+	}, [isModalOpen]);
 
 	return (
 		<>
 			<Title title="Files" />
 
-			{
-				isLoad
-					? <SkeletonLoaderFolders />
-					: folders.length > 0 && <Folders folders={folders} />
-			}
+			<RenderList isLoad={isLoad} folders={folders} />
 
 			<CreateFolderModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
 
