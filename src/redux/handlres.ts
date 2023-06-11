@@ -22,21 +22,14 @@ export const handleUserInfoRejected: CaseReducer<IInitialState, PayloadAction<un
 export const handleSetAuth: CaseReducer<IInitialState, PayloadAction<string>> = (state, action) => {
 	const { access, email, name } = convertQueryStringToObject(action.payload);
 
-	if (!access) {
-		state.email = "";
-		state.name = "";
-		state.isAuth = false;
-		return;
-	}
-
 	state.name = checkValue(name) as string;
 	state.email = checkValue(email) as string;
 	state.isAuth = checkValue(access) as boolean;
 }
 
-export const handleRedirectWindowLocation: CaseReducer<IInitialState> = (state) => {
+export const handleRedirectWindowLocation: CaseReducer<IInitialState, PayloadAction<string>> = (state, action) => {
 	state.isLoadAuthButton = true;
-	window.location.href = "http://localhost:3001/api/redirect";
+	window.location.href = `http://localhost:3001/api/${action.payload}`;
 }
 
 export const handleLogoutPending: CaseReducer<IInitialState> = (state) => {
@@ -44,7 +37,7 @@ export const handleLogoutPending: CaseReducer<IInitialState> = (state) => {
 	state.isLoadAuthButton = true;
 }
 
-export const handleLogoutFulfilled: CaseReducer<IInitialState, PayloadAction<unknown>> = (state, action) => {
+export const handleLogoutFulfilled: CaseReducer<IInitialState> = (state) => {
 	state.isLoad = false;
 	state.isLoadAuthButton = false;
 	state.name = "";

@@ -23,7 +23,7 @@ export const AuthorizeButton: FC<AuthorizeButtonProps> = ({ isAuth }) => {
 
 	const handleAuth = (isAuth: boolean) => () => {
 		if (!isAuth) {
-			dispatch(redirectWindowLocation());
+			dispatch(redirectWindowLocation("redirect"));
 			return;
 		}
 		navigate({ search: "" });

@@ -1,6 +1,4 @@
-type CustomBoolean = "true" | "false";
-
-const checkBoolean = (value: CustomBoolean) => value === "true";
+export const checkBoolean = (value: string): boolean => value === "true";
 
 export const checkValue = (value: string): boolean | string => {
 	switch (value) {
