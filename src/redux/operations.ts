@@ -34,19 +34,3 @@ export const logout = createAsyncThunk<any, string>(
 		}
 	}
 );
-
-export const createFolder = createAsyncThunk<void, string>(
-	"folders/createFolder",
-	async (path, thunkAPI) => {
-		try {
-			const response = await axios.post("http://localhost:3001/api/folders-create", {
-				path
-			});
-			console.log(path);
-			console.log(response);
-			return response.data;
-		} catch (error) {
-			return thunkAPI.rejectWithValue(error);
-		}
-	}
-);

@@ -28,7 +28,7 @@ export const handleSetAuth: CaseReducer<IInitialState, PayloadAction<string>> = 
 }
 
 export const handleRedirectWindowLocation: CaseReducer<IInitialState, PayloadAction<string>> = (state, action) => {
-	state.isLoadAuthButton = true;
+	state.isLoadAuthButton = action.payload === "redirect";
 	window.location.href = `http://localhost:3001/api/${action.payload}`;
 }
 
